@@ -50,3 +50,17 @@ jobs:
       - name: Update deployment.yaml
         run: |
           sed -i "s|IMAGE_NAME|sagarsh/sample-app:${{ github.sha }}|g" deployment.yaml     
+
+      - name: Deploy to Minikube
+        run: |
+          kubectl apply -f deployment.yaml
+          kubectl apply -f service.yaml
+
+      - name: Wait for Rollout
+        run: |
+          kubectl rollout status deployment/sample-app
+
+      - name: Verify
+        run: |
+         kubectl get pods
+         kubectl get svc    
