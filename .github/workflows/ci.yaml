@@ -8,7 +8,7 @@ on:
 jobs:
 
   build:
-  
+
     runs-on: ubuntu-latest
     #runs-on: self-hosted
 
@@ -46,3 +46,7 @@ jobs:
       - name: Push Image
         run: |
            docker push sagarsh/sample-app:${{ github.sha }}  
+
+      - name: Update deployment.yaml
+        run: |
+          sed -i "s|IMAGE_NAME|sagarsh/sample-app:${{ github.sha }}|g" deployment.yaml     

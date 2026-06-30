@@ -30,7 +30,7 @@ spec:
 
       - name: app
 
-        image: myrepo/sample-app:latest
+        image: IMAGE_NAME
 
         ports:
 
